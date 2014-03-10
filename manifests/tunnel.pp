@@ -324,9 +324,7 @@ define openvpn::tunnel (
     if $mode == 'server' {
       firewall::rule { "openvpn_${name}_${proto}_${port}":
         destination     => $firewall_dst,
-        destination_v6  => $firewall_dst_v6,
         source          => $firewall_src,
-        source_v6       => $firewall_src_v6,
         protocol        => $proto,
         port            => $port,
         action          => 'allow',
@@ -340,9 +338,7 @@ define openvpn::tunnel (
 
       firewall::rule { "openvpn_${name}_${proto}_${port}":
         destination     => $dns_info['ip_v4'], # unless $firewall_dst,
-        destination_v6  => $dns_info['ip_v6'], # unless $firewall_dst_v6,
         source          => $firewall_src,
-        source_v6       => $firewall_src_v6,
         protocol        => $proto,
         port            => $port,
         action          => 'allow',
